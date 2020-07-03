@@ -16,9 +16,9 @@ class Network:
         self.inputDimension = input_dim
         self.hidden = 10
         self.network = nn.Sequential(
-            nn.Linear(self.inputDimension, 2*self.inputDimension),
+            nn.Linear(self.inputDimension, 30),
             nn.LeakyReLU(),
-            nn.Linear(2*self.inputDimension, 3),
+            nn.Linear(30, 3),
             # nn.LeakyReLU(),
             # nn.Linear(self.inputDimension, self.inputDimension),
             # nn.LeakyReLU(),

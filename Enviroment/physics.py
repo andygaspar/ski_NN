@@ -27,10 +27,24 @@ class Trajectory:
         self.trajectory.append(position.copy())
 
     def print(self):
+        k = 0
+        gates = self.piste.gates
+        gates.append(self.piste.final)
         for i in range(len(self.trajectory)):
             line = ""
-            for j in range(self.piste.width):
-                line += "* "
+            if i == self.piste.gates[k].y:
+                for j in range(gates[k].x[0]-1):
+                    line += "* "
+                line += "H "
+                for j in gates[k].x:
+                    line += "_ "
+                line += "H "
+                for j in range(gates[k].x[-1]+2, self.piste.width):
+                    line += "* "
+                k +=1
+            else:
+                for j in range(self.piste.width):
+                    line += "* "
             line = line[:self.trajectory[i].x*2] + "X " + line[(self.trajectory[i].x*2)+2:]
             print(line)
         print("\n")

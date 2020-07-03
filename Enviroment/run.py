@@ -21,25 +21,20 @@ class Run:
         while not ended:
             action = self.skier.get_action(state)
             self.trajectory.add(state.position)
-            #self.trajectory.print()
             next_state = self.physics.get_next_state(state, action)
             if self.out(next_state.position):
                 self.result = False
-                self.skier.out()
-                #self.trajectory.print()
-                self.trajectory.reset()
+                self.trajectory.add(state.position)
+                self.skier.trajectory = copy.copy(self.trajectory)
                 return
 
             if self.ended(next_state.position):
                 self.result = True
                 ended = True
-                self.skier.end()
                 state = next_state
             else:
-                self.skier.add_record(next_state, False)
                 state = next_state
 
-       # self.trajectory.print()
         self.trajectory.add(state.position)
         self.skier.trajectory = copy.copy(self.trajectory)
         self.trajectory.reset()
