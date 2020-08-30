@@ -28,6 +28,9 @@ class TrainingRun:
                 self.trajectory.reset()
                 return
 
+            if self.missed_gate(next_state.position):
+                self.skier.gate_done(next_state)
+
             if self.ended(next_state.position):
                 self.result = True
                 ended = True
@@ -46,4 +49,7 @@ class TrainingRun:
 
     def ended(self, position: Position):
         return self.piste.ended(position)
+
+    def missed_gate(self, position: Position):
+        return self.piste.missed_gate(position)
 

@@ -1,4 +1,3 @@
-
 import numpy as np
 
 from Enviroment.phisical_properties import Position
@@ -19,11 +18,11 @@ EPS_DECAY = 0.0001
 UPDATE_TARGET_EVERY = 100
 RUNS = 100_000
 
-#, Position(1,7)
-gates = [Gate(range(1,3),5),Gate(range(7,10),12), Gate(range(1,4),19), Gate(range(7,9),24), Gate(range(2,8),29)]
+gates = [Gate(range(1, 3), 5), Gate(range(7, 10), 12), Gate(range(1, 4), 19), Gate(range(7, 9), 24),
+         Gate(range(2, 8), 29)]
 
-initial = Position(5,0)
-p = Piste(10,30,initial, gates)
+initial = Position(5, 0)
+p = Piste(10, 30, initial, gates)
 s = AITrainer(REWARD, REWARD_OUT, SAMPLE_SIZE, CAPACITY, GAMMA, EPS_MIN, EPS_DECAY, UPDATE_TARGET_EVERY)
 training_run = TrainingRun(p, s)
 
@@ -34,7 +33,7 @@ for i in range(RUNS):
     counter += training_run.result
     s.update_eps(i)
     if i % 50 == 0 and i > 0:
-        print(i, counter, s.eps_greedy_value, s.model_network.loss, )
+        print(i, counter, s.eps_greedy_value, s.model_network.loss)
 
         if counter == 50:
             fifty += 1

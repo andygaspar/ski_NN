@@ -69,6 +69,11 @@ class AITrainer(Skier):
                                      self.rewardOut, done=True)
         self.train_model_network()
 
+    def gate_done(self, next_state: PhysicalProperties):
+        next_state = self.get_state(next_state)
+        self.replayMemory.add_record(self.state, self.action, next_state,
+                                     self.reward, done=False)
+
     def add_record(self, next_state: PhysicalProperties, done: bool):
         next_state = self.get_state(next_state)
         self.replayMemory.add_record(self.state, self.action, next_state, reward=0, done=done)

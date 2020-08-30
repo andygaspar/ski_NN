@@ -36,8 +36,7 @@ class Piste:
     def out(self, position: Position):
         if position.x < 0 or position.x > self.width or position.y > self.length:
             return True
-        missed = self.missed_gate(position)
-        return missed
+        return False
 
     def missed_gate(self, position: Position):
         gates = self.gates

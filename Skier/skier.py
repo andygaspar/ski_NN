@@ -23,3 +23,6 @@ class Skier:
     @abstractmethod
     def out(self):
         pass
+
+    def gate_done(self, next_state: PhysicalProperties):
+        pass
